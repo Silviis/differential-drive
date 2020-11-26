@@ -19,7 +19,7 @@
 */
 
 #include "ros/ros.h"
-#include "std_msgs/Int16.h"
+#include "std_msgs/Int32.h"
 #include "std_msgs/Float32.h"
 
 #include <sstream>
@@ -85,7 +85,7 @@ private:
 
 public:
 
-    void wheelCallback(std_msgs::Int16 message) {
+    void wheelCallback(std_msgs::Int32 message) {
       int enc = (int)message.data;
       if (enc < encoder_low_wrap and prev_encoder > encoder_high_wrap) {
         wheel_mult = wheel_mult + 1;
@@ -133,8 +133,8 @@ public:
 
       ros::param::param<double>("~vel_threshold", vel_threshold, 0.001f);
 
-      ros::param::param<int>("encoder_min", encoder_min, -32768);
-      ros::param::param<int>("encoder_max", encoder_max, 32768);
+      ros::param::param<int>("encoder_min", encoder_min, -2147483647);
+      ros::param::param<int>("encoder_max", encoder_max, 2147483647);
 
       ros::param::param<int>("wheel_low_wrap", encoder_low_wrap, (int)( 0.3f*(encoder_max-encoder_min) ) + (encoder_min));
       ros::param::param<int>("wheel_high_wrap", encoder_high_wrap, (int)( 0.7f*(encoder_max-encoder_min) ) + (encoder_min));

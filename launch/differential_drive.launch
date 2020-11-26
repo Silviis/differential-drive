@@ -1,0 +1,27 @@
+<launch>
+  <rosparam command="load"
+      file="$(find differential_drive)/launch/$global.yaml">
+  </rosparam>
+
+  <node pkg="differential_drive" type="pid_velocity" name="rpid_velocity">
+    <remap from="wheel" to="rwheel"/>
+    <remap from="motor_cmd" to="rmotor_cmd"/>
+    <remap from="wheel_vtarget" to="rwheel_vtarget"/>
+    <remap from="wheel_vel" to="rwheel_vel"/>
+    <rosparam>
+        Kp: 1
+        Ki: 0
+        Kd: 0
+        out_min: -100
+        out_max: 100
+        rate: 30
+        timeout_ticks: 4
+        rolling_pts: 5
+    </rosparam>
+  </node>
+
+  <!--node pkg="differential_drive" type="twist_to_motors.py"
+      name="twist_to_motors" output="screen">
+    <remap from="twist" to="cmd_vel"/>
+  </node-->
+</launch>
