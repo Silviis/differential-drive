@@ -3,11 +3,11 @@
       file="$(find differential_drive)/cfg/global.yaml">
   </rosparam>
 
-  <node pkg="differential_drive" type="pid_velocity" name="rpid_velocity">
-    <remap from="wheel" to="rwheel"/>
-    <remap from="motor_cmd" to="rmotor_cmd"/>
+  <node pkg="differential_drive" type="pid_velocity" name="rrpid_velocity">
+    <remap from="wheel" to="/rear_right/encoder"/>
+    <remap from="motor_cmd" to="/rear_right/motor_cmd"/>
     <remap from="wheel_vtarget" to="rwheel_vtarget"/>
-    <remap from="wheel_vel" to="rwheel_vel"/>
+    <remap from="wheel_vel" to="/rear_right/velocity"/>
     <rosparam>
         Kp: 1
         Ki: 0
