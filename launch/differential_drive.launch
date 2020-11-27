@@ -15,7 +15,7 @@
         out_min: -100
         out_max: 100
         rate: 30
-        timeout_ticks: 4
+        timeout_ticks: 100
         rolling_pts: 5
     </rosparam>
   </node>

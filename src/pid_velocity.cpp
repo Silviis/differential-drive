@@ -99,7 +99,7 @@ public:
       wheel_latest = (double)(enc + wheel_mult * (encoder_max - encoder_min)) / (double)ticks_per_meter;
       prev_encoder = enc;
         
-      //ROS_INFO("Got wheel callback data:%d wheel_latest: %lf (%d div by %d) mult: %d", message.data, wheel_latest, enc + wheel_mult*(encoder_max-encoder_min), ticks_per_meter, wheel_mult);
+      ROS_INFO("Got wheel callback data:%d wheel_latest: %lf (%d div by %d) mult: %d", message.data, wheel_latest, enc + wheel_mult*(encoder_max-encoder_min), ticks_per_meter, wheel_mult);
     }
 
     void targetCallback(std_msgs::Float32 message) {
