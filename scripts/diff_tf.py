@@ -105,8 +105,8 @@ class DiffTf:
         self.then = rospy.Time.now()
         
         # subscriptions
-        rospy.Subscriber("lwheel", Int16, self.lwheelCallback, queue_size=1)
-        rospy.Subscriber("rwheel", Int16, self.rwheelCallback, queue_size=1)
+        rospy.Subscriber("/rear_left/encoder", Int16, self.lwheelCallback, queue_size=1)
+        rospy.Subscriber("/rear_right/encoder", Int16, self.rwheelCallback, queue_size=1)
         self.odomPub = rospy.Publisher("odom", Odometry, queue_size=10)
         self.odomBroadcaster = TransformBroadcaster()
         
