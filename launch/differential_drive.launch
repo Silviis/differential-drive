@@ -1,6 +1,6 @@
 <launch>
   <rosparam command="load"
-      file="$(find differential_drive)/launch/$global.yaml">
+      file="$(find differential_drive)/cfg/global.yaml">
   </rosparam>
 
   <node pkg="differential_drive" type="pid_velocity" name="rpid_velocity">
