@@ -9,14 +9,14 @@
     <remap from="wheel_vtarget" to="rwheel_vtarget"/>
     <remap from="wheel_vel" to="/rear_right/velocity"/>
     <rosparam>
-        Kp: 1
-        Ki: 0
-        Kd: 0
+        Kp: 85
+        Ki: 30
+        Kd: 0.5
         out_min: -100
         out_max: 100
         rate: 30
-        timeout_ticks: 100
-        rolling_pts: 5
+        timeout_ticks: 10
+        rolling_pts: 2
     </rosparam>
   </node>
 
