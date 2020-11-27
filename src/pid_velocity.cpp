@@ -19,7 +19,7 @@
 */
 
 #include "ros/ros.h"
-#include "std_msgs/Int32.h"
+#include "std_msgs/Int16.h"
 #include "std_msgs/Float32.h"
 
 #include <sstream>
@@ -85,7 +85,7 @@ private:
 
 public:
 
-    void wheelCallback(std_msgs::Int32 message) {
+    void wheelCallback(std_msgs::Int16 message) {
       int enc = (int)message.data;
       if (enc < encoder_low_wrap and prev_encoder > encoder_high_wrap) {
         wheel_mult = wheel_mult + 1;
@@ -99,7 +99,7 @@ public:
       wheel_latest = (double)(enc + wheel_mult * (encoder_max - encoder_min)) / (double)ticks_per_meter;
       prev_encoder = enc;
         
-      ROS_INFO("Got wheel callback data:%d wheel_latest: %lf (%d div by %d) mult: %d", message.data, wheel_latest, enc + wheel_mult*(encoder_max-encoder_min), ticks_per_meter, wheel_mult);
+      //ROS_INFO("Got wheel callback data:%d wheel_latest: %lf (%d div by %d) mult: %d", message.data, wheel_latest, enc + wheel_mult*(encoder_max-encoder_min), ticks_per_meter, wheel_mult);
     }
 
     void targetCallback(std_msgs::Float32 message) {
@@ -124,8 +124,8 @@ public:
       ros::param::param<double>("~Ki", Ki, 10.0f);
       ros::param::param<double>("~Kd", Kd, 0.001f);
 
-      ros::param::param<int>("~out_min", out_min, -255);
-      ros::param::param<int>("~out_max", out_max, 255);
+      ros::param::param<int>("~out_min", out_min, -100);
+      ros::param::param<int>("~out_max", out_max, 100);
       ros::param::param<int>("~rate", rate, 30);
       ros::param::param<int>("~rolling_pts", rolling_pts, 2);
       ros::param::param<int>("~timeout_ticks", timeout_ticks, 4);
@@ -133,8 +133,8 @@ public:
 
       ros::param::param<double>("~vel_threshold", vel_threshold, 0.001f);
 
-      ros::param::param<int>("encoder_min", encoder_min, -2147483647);
-      ros::param::param<int>("encoder_max", encoder_max, 2147483647);
+      ros::param::param<int>("encoder_min", encoder_min, -32768);
+      ros::param::param<int>("encoder_max", encoder_max, 32768);
 
       ros::param::param<int>("wheel_low_wrap", encoder_low_wrap, (int)( 0.3f*(encoder_max-encoder_min) ) + (encoder_min));
       ros::param::param<int>("wheel_high_wrap", encoder_high_wrap, (int)( 0.7f*(encoder_max-encoder_min) ) + (encoder_min));
