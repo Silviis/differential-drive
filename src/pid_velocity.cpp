@@ -145,16 +145,6 @@ public:
       prev_pid_time= ros::Time::now();
       //ROS_INFO("got Kp:%0.3f Ki:%0.3f Kd:%0.3f tpm:%d wrap: %d,%d", Kp, Ki, Kd, ticks_per_meter, encoder_low_wrap, encoder_high_wrap);
 
-      if (target > 0 && vel > -0.005 && vel < 0.005 && motor < 20)
-      {
-        motor = 20;
-      }
-
-      if (target < 0 && vel < 0.005 && vel > -0.005 && motor > -20)
-      {
-        motor = -20;
-      }
-
       //subscribers/publishers
       sub["wheel"] = node_handle.subscribe("wheel", 1, &PidVelocity::wheelCallback, this);
       sub["vtarget"] = node_handle.subscribe("wheel_vtarget", 1, &PidVelocity::targetCallback, this);

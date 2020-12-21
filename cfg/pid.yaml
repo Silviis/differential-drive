@@ -1,8 +1,8 @@
-Kp: 70
-Ki: 69
-Kd: 3
+Kp: 150
+Ki: 250
+Kd: 0
 out_min: -100
 out_max: 100
 rate: 10
-timeout_ticks: 10
+timeout_ticks: 200
 rolling_pts: 2
